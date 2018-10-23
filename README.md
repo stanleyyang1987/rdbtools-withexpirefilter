@@ -23,10 +23,12 @@ Pre-Requisites :
 1. python-lzf is optional but highly recommended to speed up parsing.
 1. redis-py is optional and only needed to run test cases.
 
+###在线安装只能安装旧版本的rdbtools，就版本没有本修改的内容###
 To install from PyPI (recommended) :
 
     pip install rdbtools python-lzf
-    
+
+###要安装拉取最新的源码进行安装###
 To install from source : 
 
     git clone https://github.com/sripathikrishnan/redis-rdb-tools
@@ -107,7 +109,19 @@ Running with the  `-c memory` generates a CSV report with the approximate memory
 	2,hash,baloon,138,ziplist,3,11
 	2,list,armadillo,231,quicklist,5,20
 	2,hash,aroma,129,ziplist,3,11
-
+	
+	>rdb -c memory 6379dump.rdb  --ttl 48 --ttlunit h  -f 6379expire48h.csv
+    这里会将expiretime大于48小时的key记录筛选出来。如下
+    
+    expiry time 2018-11-11 10:44:25.467000 大于 ttl 2018-10-25 17:00:44.466934
+    expiry time 2018-11-04 05:16:18.281000 大于 ttl 2018-10-25 17:00:44.470923
+    expiry time 2018-11-05 21:53:39.527000 大于 ttl 2018-10-25 17:00:44.470923
+    expiry time 2018-11-06 22:00:44.410000 大于 ttl 2018-10-25 17:00:44.470923
+    expiry time 2018-11-05 16:34:52.838000 大于 ttl 2018-10-25 17:00:44.471921
+    expiry time 2018-11-07 17:53:43.070000 大于 ttl 2018-10-25 17:00:44.471921
+    key总数为:964152,expiry为None的个数是：607446 ,expiry time 超过指定时长的个数是：251648
+    
+    ttlunit为单位，h表示小时、s表示秒。目前只支持这两种
 
 The generated CSV has the following columns - Database Number, Data Type, Key, Memory Used in bytes and RDB Encoding type.
 Memory usage includes the key, the value and any other overheads.
