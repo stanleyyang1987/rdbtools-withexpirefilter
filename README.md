@@ -23,15 +23,15 @@ Pre-Requisites :
 1. python-lzf is optional but highly recommended to speed up parsing.
 1. redis-py is optional and only needed to run test cases.
 
-###在线安装只能安装旧版本的rdbtools，就版本没有本修改的内容###
+###在线安装只能安装旧版本的rdbtools，旧版本没有本修改的内容###
 To install from PyPI (recommended) :
 
     pip install rdbtools python-lzf
 
-###要安装拉取最新的源码进行安装###
+###请下载源码安装拉取最新的源码进行安装###
 To install from source : 
 
-    git clone https://github.com/sripathikrishnan/redis-rdb-tools
+    git clone https://git.yimidida.com/arc/monitor/rdbtools-ymdd.git
     cd redis-rdb-tools
     sudo python setup.py install
 
